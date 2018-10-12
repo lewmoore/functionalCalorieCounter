@@ -3,6 +3,24 @@ import { h } from 'virtual-dom'
 
 const { pre, div, h1, button, form, label, input } = hh(h)
 
+function buttonSet(dispatch) {
+    return div([
+        button({ 
+            className: 'f3 pv2 ph3 bg-blue white bn mr2 dim', 
+            type: 'submit',
+        },
+        'Save',
+        ),
+
+        button({
+            className: 'f3 pv2 bg-blue white bn mr2 dim',
+            type: button,
+        },
+        'Cancel'
+        )
+    ])
+}
+
 function fieldSet(labelText, inputValue){
     return div([
         label({ className: 'db mb1' }, labelText),
@@ -15,16 +33,19 @@ function fieldSet(labelText, inputValue){
 }
 
 function formView(dispatch, model){
-    const { description, calories } = model
-    return form({
-        className: 'w-100 mv2',
-    },
-    [
-        fieldSet('Meal', description),
-        fieldSet('Calories', calories || ''),
-    ],
-    )
-    // return button({ className: 'f1 pv2 ph3 bg-blue white border-none'}, 'Add Meal' )
+    const { description, calories, showForm } = model
+    if (showForm) {
+        return form({
+            className: 'w-100 mv2',
+        },
+            [
+                fieldSet('Meal', description),
+                fieldSet('Calories', calories || ''),
+                buttonSet(dispatch),
+            ],
+        )
+    }
+    return button({ className: 'f1 pv2 ph3 bg-blue white border-none' }, 'Add Meal' )
 }
 
 function view(dispatch, model) {
