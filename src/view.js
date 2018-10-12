@@ -1,8 +1,38 @@
 import hh from 'hyperscript-helpers'
 import { h } from 'virtual-dom'
 
-const { pre } = hh(h)
+const { pre, div, h1, button, form, label, input } = hh(h)
 
-export default function view(dispatch, model) {
-    return pre(JSON.stringify(model, null, 2))
+function fieldSet(labelText, inputValue){
+    return div([
+        label({ className: 'db mb1' }, labelText),
+        input({ 
+            className: 'pa2 input-reset ba w-100 mb2',
+            type: 'text',
+            value: inputValue,
+        })
+    ])
 }
+
+function formView(dispatch, model){
+    const { description, calories } = model
+    return form({
+        className: 'w-100 mv2',
+    },
+    [
+        fieldSet('Meal', description),
+        fieldSet('Calories', calories),
+    ],
+    )
+    // return button({ className: 'f1 pv2 ph3 bg-blue white border-none'}, 'Add Meal' )
+}
+
+function view(dispatch, model) {
+    return div({ className: 'mw6 center' }, [
+        h1({ className: 'f2 pv2 bb' }, 'Calorie Counter'),
+        formView(dispatch, view),
+        pre(JSON.stringify(model, null, 2)),
+    ])
+}
+
+export default view
