@@ -13,7 +13,7 @@ function update(msg, model){
     switch (msg.type) {
         case MSGS.SHOW_FORM: {
             const { showForm } = msg
-            return {...model, showForm }
+            return {...model, showForm, description: '', calories: 0 }
         }
     }
     return model
