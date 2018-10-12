@@ -21,7 +21,7 @@ function formView(dispatch, model){
     },
     [
         fieldSet('Meal', description),
-        fieldSet('Calories', calories),
+        fieldSet('Calories', calories || ''),
     ],
     )
     // return button({ className: 'f1 pv2 ph3 bg-blue white border-none'}, 'Add Meal' )
@@ -30,7 +30,7 @@ function formView(dispatch, model){
 function view(dispatch, model) {
     return div({ className: 'mw6 center' }, [
         h1({ className: 'f2 pv2 bb' }, 'Calorie Counter'),
-        formView(dispatch, view),
+        formView(dispatch, model),
         pre(JSON.stringify(model, null, 2)),
     ])
 }
