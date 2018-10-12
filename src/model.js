@@ -1,4 +1,4 @@
-export const initModel = {
+const initModel = {
     description: '',
     calories: 0,
     showForm: false,
@@ -6,3 +6,5 @@ export const initModel = {
     editId: null,
     meals: [],
 }
+
+export default initModel
