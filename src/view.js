@@ -1,5 +1,6 @@
 import hh from 'hyperscript-helpers'
 import { h } from 'virtual-dom'
+import { showFormMsg } from './update'
 
 const { pre, div, h1, button, form, label, input } = hh(h)
 
@@ -15,6 +16,7 @@ function buttonSet(dispatch) {
         button({
             className: 'f3 pv2 bg-blue white bn mr2 dim',
             type: button,
+            onclick: () => dispatch(showFormMsg(false)),
         },
         'Cancel'
         )
@@ -45,7 +47,12 @@ function formView(dispatch, model){
             ],
         )
     }
-    return button({ className: 'f1 pv2 ph3 bg-blue white border-none' }, 'Add Meal' )
+    return button({ 
+        className: 'f1 pv2 ph3 bg-blue white border-none', 
+        onclick: () => dispatch(showFormMsg(true)),
+    }, 
+    'Add Meal' 
+    )
 }
 
 function view(dispatch, model) {
