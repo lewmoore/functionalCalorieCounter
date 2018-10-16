@@ -48,7 +48,7 @@ function formView(dispatch, model){
         )
     }
     return button({ 
-        className: 'f1 pv2 ph3 bg-blue white border-none', 
+        className: 'f3 pv2 bg-blue white bn mr2 dim', 
         onclick: () => dispatch(showFormMsg(true)),
     }, 
     'Add Meal' 
